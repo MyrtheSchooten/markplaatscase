@@ -1,19 +1,18 @@
 package domain;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Gebruiker {
+public class Gebruiker extends  AbstractEntityID<Long> {
 
-    @Id
-    @GeneratedValue
-    Long id;
+    private String gebruikersnaam;
+    private String wachtwoord;
+    private AccountStatus accountStatus = AccountStatus.ACTIEF;
 
-    @Basic
-    String gebruikersnaam;
-
-    @Basic
-    String wachtwoord;
+    @OneToMany(mappedBy = "gebruiker")
+    private List<Advertentie> advertenties;
 
     public Gebruiker() {
 
@@ -22,5 +21,14 @@ public class Gebruiker {
     public Gebruiker(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+
+    }
+
+    public List<Advertentie> getAdvertenties() {
+        return advertenties;
+    }
+
+    public void setAdvertenties(List<Advertentie> advertenties) {
+        this.advertenties = advertenties;
     }
 }

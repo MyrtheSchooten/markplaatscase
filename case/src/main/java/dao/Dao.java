@@ -20,6 +20,12 @@ public abstract class Dao<T> {
         return t;
     }
 
+    public void save(T e){
+        entityManager.getTransaction().begin();
+        entityManager.persist(e);
+        entityManager.getTransaction().commit();
+    }
+
     public void saveAndDetach(T e) {
         entityManager.getTransaction().begin();
         entityManager.persist(e);
