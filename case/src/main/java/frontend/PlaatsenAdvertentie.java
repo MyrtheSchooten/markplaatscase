@@ -61,16 +61,18 @@ public class PlaatsenAdvertentie {
             adDao.save(advertentie);
             advertentie.setGebruiker(gebruiker);
             adDao.update(advertentie);
+
+            System.out.println("----------------------------------------------");
+            System.out.println("Uw advertentie is opgeslagen.");
+            System.out.println("U kunt nu via \"mijn advertenties\" een afbeelding toevoegen en bezorgwijzen kiezen.");
+            System.out.println("Druk een toets in om verder te gaan");
+            System.out.println("----------------------------------------------");
+
+            String verderGaan = scanner.nextLine();
+
         } catch (NumberFormatException e) {
             System.out.println("Voer een numerieke waarde in voor de prijs. Probeer het nog een keer.");
         }
-        System.out.println("----------------------------------------------");
-        System.out.println("Uw advertentie is opgeslagen.");
-        System.out.println("U kunt nu via uw advertenties een afbeelding toevoegen.");
-        System.out.println("Druk een toets in om verder te gaan");
-        System.out.println("----------------------------------------------");
-
-        String verderGaan = scanner.nextLine();
     }
 
    /* private void afbeeldingToevoegen() {

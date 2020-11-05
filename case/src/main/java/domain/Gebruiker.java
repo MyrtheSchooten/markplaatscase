@@ -3,7 +3,6 @@ package domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Gebruiker extends  AbstractEntityID<Long> {
@@ -20,7 +19,7 @@ public class Gebruiker extends  AbstractEntityID<Long> {
             name = "gebruiker_bezorgwijzen",
             joinColumns = @JoinColumn(name = "gebruiker_id"),
             inverseJoinColumns = @JoinColumn(name = "bezorgwijze_id"))
-    private List<Bezorgwijze> gekozenBezorgwijzen = new ArrayList<>();
+    private List<BezorgwijzeGebruiker> gekozenBezorgwijzen = new ArrayList<>();
 
     public Gebruiker() {
 
@@ -32,17 +31,8 @@ public class Gebruiker extends  AbstractEntityID<Long> {
 
     }
 
-    public List<Advertentie> getAdvertenties() {
-        return advertenties;
-    }
-
-    public void setAdvertenties(List<Advertentie> advertenties) {
-        this.advertenties = advertenties;
-    }
-
-    public void addBezorgwijzen(Bezorgwijze bezorgwijze) {
-        System.out.println("Dit zijn de bezro sa:" + bezorgwijze.getBezorgwijzeOpties());
-        this.gekozenBezorgwijzen.add(bezorgwijze);
+    public void addGebruikerBezorgwijzen(BezorgwijzeGebruiker bezorgwijzeGebruiker) {
+        this.gekozenBezorgwijzen.add(bezorgwijzeGebruiker);
     }
 
 }

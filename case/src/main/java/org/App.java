@@ -3,7 +3,7 @@ package org;
 import dao.AdvertentieDao;
 import dao.BezorgwijzeDao;
 import dao.GebruikerDao;
-import domain.Bezorgwijze;
+import domain.BezorgwijzeGebruiker;
 import domain.BezorgwijzeOpties;
 import domain.Gebruiker;
 import frontend.Hoofdpagina;
@@ -23,27 +23,27 @@ public class App {
     public static void main(String[] args) {
         PlaatsenAdvertentie plaatsenAdvertentie = new PlaatsenAdvertentie();
 
-        Bezorgwijze afhalenMagazijn = new Bezorgwijze(BezorgwijzeOpties.AFHALENMAGAZIJN);
-        Bezorgwijze thuisAfhalen = new Bezorgwijze(BezorgwijzeOpties.THUISAFHALEN);
-        Bezorgwijze versturen = new Bezorgwijze(BezorgwijzeOpties.VERSTUREN);
-        Bezorgwijze versturenRembours = new Bezorgwijze(BezorgwijzeOpties.VERSTURENREMBOURS);
+        BezorgwijzeGebruiker afhalenMagazijn = new BezorgwijzeGebruiker(BezorgwijzeOpties.AFHALENMAGAZIJN);
+        BezorgwijzeGebruiker thuisAfhalen = new BezorgwijzeGebruiker(BezorgwijzeOpties.THUISAFHALEN);
+        BezorgwijzeGebruiker versturen = new BezorgwijzeGebruiker(BezorgwijzeOpties.VERSTUREN);
+        BezorgwijzeGebruiker versturenRembours = new BezorgwijzeGebruiker(BezorgwijzeOpties.VERSTURENREMBOURS);
         bezorgDao.save(afhalenMagazijn);
         bezorgDao.save(thuisAfhalen);
         bezorgDao.save(versturen);
         bezorgDao.save(versturenRembours);
 
         Gebruiker gebruiker1 = new Gebruiker("Gebruiker1", "W8Woord");
-        gebruiker1.addBezorgwijzen(afhalenMagazijn);
-        gebruiker1.addBezorgwijzen(thuisAfhalen);
+        gebruiker1.addGebruikerBezorgwijzen(afhalenMagazijn);
+        gebruiker1.addGebruikerBezorgwijzen(thuisAfhalen);
         gebDao.save(gebruiker1);
 
         Gebruiker gebruiker2 = new Gebruiker("Gebruiker2", "ditismijnwachtwoord");
-        gebruiker2.addBezorgwijzen(versturen);
+        gebruiker2.addGebruikerBezorgwijzen(versturen);
         gebDao.save(gebruiker2);
 
         Gebruiker gebruiker3 = new Gebruiker("Gebruiker3", "12345");
-        gebruiker3.addBezorgwijzen(versturen);
-        gebruiker3.addBezorgwijzen(versturenRembours);
+        gebruiker3.addGebruikerBezorgwijzen(versturen);
+        gebruiker3.addGebruikerBezorgwijzen(versturenRembours);
         gebDao.save(gebruiker3);
 
         new Hoofdpagina().Start(adDao, gebruiker2);
