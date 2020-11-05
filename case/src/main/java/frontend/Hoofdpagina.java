@@ -1,6 +1,7 @@
 package frontend;
 
 import dao.Dao;
+import domain.Advertentie;
 import domain.Gebruiker;
 import frontend.PlaatsenAdvertentie;
 
@@ -9,7 +10,7 @@ import java.util.Scanner;
 public class Hoofdpagina {
     public Scanner scanner = new Scanner(System.in);
 
-    public void Start(Dao adDao, Gebruiker gebruiker) {
+    public void Start(Dao<Advertentie> adDao, Gebruiker gebruiker) {
 
         while (true) {
             System.out.println("----------------------------------------------");

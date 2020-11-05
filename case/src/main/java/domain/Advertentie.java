@@ -28,8 +28,8 @@ public class Advertentie extends AbstractEntityID<Long>{
     private String omschrijving;
 
     @Lob
-    @Basic(fetch = EAGER)
-    private byte[] multimedia;
+    @Basic(fetch = LAZY)
+    private byte[] afbeelding;
 
     public Advertentie() {
     }
@@ -66,11 +66,11 @@ public class Advertentie extends AbstractEntityID<Long>{
         this.omschrijving = omschrijving;
     }
 
-    public byte[] getMultimedia() {
-        return multimedia;
+    public byte[] getAfbeelding() {
+        return afbeelding;
     }
 
-    public void setMultimedia(byte[] multimedia) {
-        this.multimedia = multimedia;
+    public void setAfbeelding(byte[] afbeelding) {
+        this.afbeelding = afbeelding;
     }
 }
