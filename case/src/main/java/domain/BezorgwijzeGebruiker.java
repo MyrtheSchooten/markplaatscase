@@ -5,19 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class BezorgwijzeGebruiker extends AbstractEntityID<Long> {
+public class BezorgwijzeGebruiker extends Bezorgwijze {
 
     @ManyToMany(mappedBy = "gekozenBezorgwijzen")
     List<Gebruiker> gebruikersVanBezorgwijze = new ArrayList<>();
 
-    @Enumerated(value = EnumType.STRING)
-    BezorgwijzeOpties bezorgwijzeOpties;
+    public  BezorgwijzeGebruiker(){
 
-    public BezorgwijzeGebruiker() {
     }
-
     public BezorgwijzeGebruiker(BezorgwijzeOpties bezorgwijzeOpties) {
-        this.bezorgwijzeOpties = bezorgwijzeOpties;
+        super(bezorgwijzeOpties);
     }
-
 }

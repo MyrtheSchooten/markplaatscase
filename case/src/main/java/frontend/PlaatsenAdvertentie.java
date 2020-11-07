@@ -14,8 +14,10 @@ public class PlaatsenAdvertentie {
     public void plaatsenAdvertentie(Dao<Advertentie> adDao, Gebruiker gebruiker) {
 
         while (true) {
+
+            System.out.println("********* " + getClass().getSimpleName() + " *********");
             System.out.println("----------------------------------------------");
-            System.out.println("Hier maakt u een advertentie aan");
+            System.out.println("Hier plaatst u uw advertentie.");
             System.out.println("Wat wilt u aanbieden?");
             System.out.println("----------------------------------------------");
 
@@ -64,7 +66,7 @@ public class PlaatsenAdvertentie {
 
             System.out.println("----------------------------------------------");
             System.out.println("Uw advertentie is opgeslagen.");
-            System.out.println("U kunt nu via \"mijn advertenties\" een afbeelding toevoegen en bezorgwijzen kiezen.");
+            System.out.println("U kunt nu via \"mijn advertenties\" een afbeelding toevoegen, aangeven welke soort product/dienst u heeft aangeboden en evt bezorgwijzen kiezen.");
             System.out.println("Druk een toets in om verder te gaan");
             System.out.println("----------------------------------------------");
 

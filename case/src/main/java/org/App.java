@@ -3,9 +3,8 @@ package org;
 import dao.AdvertentieDao;
 import dao.BezorgwijzeDao;
 import dao.GebruikerDao;
-import domain.BezorgwijzeGebruiker;
-import domain.BezorgwijzeOpties;
-import domain.Gebruiker;
+import dao.SoortDao;
+import domain.*;
 import frontend.Hoofdpagina;
 import frontend.PlaatsenAdvertentie;
 
@@ -19,6 +18,8 @@ public class App {
     public static final GebruikerDao gebDao = new GebruikerDao(entityManager);
     public static final AdvertentieDao adDao = new AdvertentieDao(entityManager);
     public static final BezorgwijzeDao bezorgDao = new BezorgwijzeDao(entityManager);
+    public static final SoortDao soortDao = new SoortDao(entityManager);
+
 
     public static void main(String[] args) {
         PlaatsenAdvertentie plaatsenAdvertentie = new PlaatsenAdvertentie();
@@ -31,6 +32,15 @@ public class App {
         bezorgDao.save(thuisAfhalen);
         bezorgDao.save(versturen);
         bezorgDao.save(versturenRembours);
+
+        ProductSoort fiets = new ProductSoort("fiets");
+        ProductSoort boek = new ProductSoort("boek");
+        DienstSoort fietsenMaker = new DienstSoort("fietsenmaker");
+        DienstSoort schilder = new DienstSoort("schilder");
+        soortDao.save(fiets);
+        soortDao.save(boek);
+        soortDao.save(fietsenMaker);
+        soortDao.save(schilder);
 
         Gebruiker gebruiker1 = new Gebruiker("Gebruiker1", "W8Woord");
         gebruiker1.addGebruikerBezorgwijzen(afhalenMagazijn);

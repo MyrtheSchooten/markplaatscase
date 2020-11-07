@@ -2,6 +2,7 @@ package dao;
 
 import javax.persistence.EntityManager;
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 public abstract class Dao<T> {
     protected final EntityManager entityManager;
@@ -51,10 +52,16 @@ public abstract class Dao<T> {
         entityManager.getTransaction().commit();
     }
 
+    public List<T> findAll() {
+        return entityManager.createQuery("SELECT e FROM " + typeSimple() + " e ", T()).getResultList();
+    }
+
+    private String typeSimple() { return T().getSimpleName(); }
 
     @SuppressWarnings("unchecked")
     private Class<T> T() {
         return (Class<T>) ((ParameterizedType) getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[0];
     }
+
 }

@@ -9,7 +9,9 @@ public class Gebruiker extends  AbstractEntityID<Long> {
 
     private String gebruikersnaam;
     private String wachtwoord;
-    private AccountStatus accountStatus = AccountStatus.ACTIEF;
+
+    @Enumerated(value = EnumType.STRING)
+    private AccountStatus accountStatus;
 
     @OneToMany(mappedBy = "gebruiker")
     private List<Advertentie> advertenties;
@@ -28,6 +30,7 @@ public class Gebruiker extends  AbstractEntityID<Long> {
     public Gebruiker(String gebruikersnaam, String wachtwoord) {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
+        this.accountStatus = AccountStatus.ACTIEF;
 
     }
 
@@ -35,4 +38,7 @@ public class Gebruiker extends  AbstractEntityID<Long> {
         this.gekozenBezorgwijzen.add(bezorgwijzeGebruiker);
     }
 
+    public String getGebruikersnaam() {
+        return gebruikersnaam;
+    }
 }

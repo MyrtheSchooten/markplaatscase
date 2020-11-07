@@ -3,6 +3,7 @@ package domain;
 import javax.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -74,5 +75,20 @@ public class Advertentie extends AbstractEntityID<Long>{
 
     public void setAfbeelding(byte[] afbeelding) {
         this.afbeelding = afbeelding;
+    }
+
+    public void setStatusAdvertentie(StatusAdvertentie statusAdvertentie) {
+        this.statusAdvertentie = statusAdvertentie;
+    }
+
+    @Override
+    public String toString() {
+        return "Advertentie" + "\n" +
+                "\t\t" + "Titel='" + titel + '\'' + "\n" +
+                "\t\t" + "Prijs=" + prijs + "\n" +
+                "\t\t" + "Verkoper=" + gebruiker.getGebruikersnaam() + "\n" +
+                "\t\t" + "DatumGeplaatst=" + datumGeplaatst + "\n" +
+                "\t\t" + "Omschrijving='" + omschrijving + '\'' + "\n" +
+                "\t\t" + "Afbeelding=" + Arrays.toString(afbeelding);
     }
 }

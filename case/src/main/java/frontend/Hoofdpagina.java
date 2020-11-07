@@ -1,5 +1,6 @@
 package frontend;
 
+import dao.AdvertentieDao;
 import dao.Dao;
 import domain.Advertentie;
 import domain.Gebruiker;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Hoofdpagina {
     public Scanner scanner = new Scanner(System.in);
 
-    public void Start(Dao<Advertentie> adDao, Gebruiker gebruiker) {
+    public void Start(AdvertentieDao adDao, Gebruiker gebruiker) {
 
         while (true) {
             System.out.println("----------------------------------------------");
@@ -32,6 +33,7 @@ public class Hoofdpagina {
                         new PlaatsenAdvertentie().plaatsenAdvertentie(adDao, gebruiker);
                         break;
                     case "2":
+                        new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(adDao);
                         break;
                     case "3":
                         break;
