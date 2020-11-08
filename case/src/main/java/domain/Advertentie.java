@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.DATE;
@@ -17,8 +18,9 @@ public class Advertentie extends AbstractEntityID<Long>{
     private String titel;
     private double prijs;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = EAGER)
     private Gebruiker gebruiker;
+
 
     @Enumerated(value = EnumType.STRING)
     private StatusAdvertentie statusAdvertentie;
@@ -84,11 +86,12 @@ public class Advertentie extends AbstractEntityID<Long>{
     @Override
     public String toString() {
         return "Advertentie" + "\n" +
-                "\t\t" + "Titel='" + titel + '\'' + "\n" +
-                "\t\t" + "Prijs=" + prijs + "\n" +
-                "\t\t" + "Verkoper=" + gebruiker.getGebruikersnaam() + "\n" +
-                "\t\t" + "DatumGeplaatst=" + datumGeplaatst + "\n" +
-                "\t\t" + "Omschrijving='" + omschrijving + '\'' + "\n" +
-                "\t\t" + "Afbeelding=" + Arrays.toString(afbeelding);
+                "\t\t" + "Productcode = " + id + "\n" +
+                "\t\t" + "Titel = '" + titel + '\'' + "\n" +
+                "\t\t" + "Prijs = " + prijs + "\n" +
+                "\t\t" + "Verkoper = " + gebruiker.getGebruikersnaam() + "\n" +
+                "\t\t" + "DatumGeplaatst = " + datumGeplaatst + "\n" +
+                "\t\t" + "Omschrijving = '" + omschrijving + '\'' + "\n" +
+                "\t\t" + "Afbeelding = " + Arrays.toString(afbeelding);
     }
 }

@@ -5,6 +5,7 @@ import domain.Advertentie;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+
 import static org.apache.logging.log4j.util.Strings.isBlank;
 
 public class AdvertentieDao extends Dao<Advertentie> {
@@ -26,5 +27,13 @@ public class AdvertentieDao extends Dao<Advertentie> {
         query.setParameter("firstarg", "%" + titel.toUpperCase() + "%");
         return query.getResultList();
     }
+
+   /* public List<Advertentie> uitgebreidZoekenDienst(String zoektermTitel, double maxPrijs) {
+        return entityManager.createQuery("SELECT e FROM DienstAdvertentie e WHERE UPPER(e.titel) LIKE :firstarg AND UPPER(e.prijs) < :secondarg", Advertentie.class).getResultList();
+    }
+
+    public List<Advertentie> uitgebreidZoekenProduct(String zoektermTitel, double maxPrijs){
+        return null;
+    }*/
 
 }

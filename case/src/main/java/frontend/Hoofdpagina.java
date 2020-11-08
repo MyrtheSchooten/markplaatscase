@@ -33,9 +33,10 @@ public class Hoofdpagina {
                         new PlaatsenAdvertentie().plaatsenAdvertentie(adDao, gebruiker);
                         break;
                     case "2":
-                        new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(adDao);
+                        new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(adDao, gebruiker);
                         break;
                     case "3":
+                        new EigenArtikelenRaadplegen().eigenArtikelenRaadplegen(adDao, gebruiker);
                         break;
                     case "4":
                         break;

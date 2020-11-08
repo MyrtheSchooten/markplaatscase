@@ -1,9 +1,6 @@
 package org;
 
-import dao.AdvertentieDao;
-import dao.BezorgwijzeDao;
-import dao.GebruikerDao;
-import dao.SoortDao;
+import dao.*;
 import domain.*;
 import frontend.Hoofdpagina;
 import frontend.PlaatsenAdvertentie;
@@ -19,7 +16,6 @@ public class App {
     public static final AdvertentieDao adDao = new AdvertentieDao(entityManager);
     public static final BezorgwijzeDao bezorgDao = new BezorgwijzeDao(entityManager);
     public static final SoortDao soortDao = new SoortDao(entityManager);
-
 
     public static void main(String[] args) {
         PlaatsenAdvertentie plaatsenAdvertentie = new PlaatsenAdvertentie();
@@ -41,6 +37,7 @@ public class App {
         soortDao.save(boek);
         soortDao.save(fietsenMaker);
         soortDao.save(schilder);
+
 
         Gebruiker gebruiker1 = new Gebruiker("Gebruiker1", "W8Woord");
         gebruiker1.addGebruikerBezorgwijzen(afhalenMagazijn);

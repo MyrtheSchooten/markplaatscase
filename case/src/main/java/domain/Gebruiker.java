@@ -23,6 +23,7 @@ public class Gebruiker extends  AbstractEntityID<Long> {
             inverseJoinColumns = @JoinColumn(name = "bezorgwijze_id"))
     private List<BezorgwijzeGebruiker> gekozenBezorgwijzen = new ArrayList<>();
 
+
     public Gebruiker() {
 
     }
@@ -31,7 +32,6 @@ public class Gebruiker extends  AbstractEntityID<Long> {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
         this.accountStatus = AccountStatus.ACTIEF;
-
     }
 
     public void addGebruikerBezorgwijzen(BezorgwijzeGebruiker bezorgwijzeGebruiker) {
@@ -41,4 +41,5 @@ public class Gebruiker extends  AbstractEntityID<Long> {
     public String getGebruikersnaam() {
         return gebruikersnaam;
     }
+
 }

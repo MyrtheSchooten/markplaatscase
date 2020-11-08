@@ -1,5 +1,6 @@
 package frontend;
 
+import dao.AdvertentieDao;
 import dao.Dao;
 import domain.Advertentie;
 import domain.DienstAdvertentie;
