@@ -1,6 +1,7 @@
 package dao;
 
 import domain.Advertentie;
+import domain.Gebruiker;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -14,12 +15,16 @@ public class AdvertentieDao extends Dao<Advertentie> {
         super(entityManager);
     }
 
-    public List<Advertentie> findBy(String name) {
+    public List<Advertentie> findByNaam(String name) {
         return isBlank(name) ? findAllForSale() : findByName(name);
     }
 
     public List<Advertentie> findAllForSale() {
         return entityManager.createQuery("SELECT e FROM Advertentie e WHERE e.statusAdvertentie = domain.StatusAdvertentie.TEKOOP").getResultList();
+    }
+
+    public List<Advertentie> findAllPerUser(Gebruiker gebruiker) {
+        return entityManager.createQuery("SELECT e FROM Advertentie e WHERE e.gebruiker = :firstarg").getResultList();
     }
 
     private List<Advertentie> findByName(String titel) {
@@ -29,7 +34,7 @@ public class AdvertentieDao extends Dao<Advertentie> {
     }
 
    /* public List<Advertentie> uitgebreidZoekenDienst(String zoektermTitel, double maxPrijs) {
-        return entityManager.createQuery("SELECT e FROM DienstAdvertentie e WHERE UPPER(e.titel) LIKE :firstarg AND UPPER(e.prijs) < :secondarg", Advertentie.class).getResultList();
+        return entityManager.createQuery("SELECT e FROM DienstAdvertentie e WHERE UPPER(e.titel) LIKE :firstarg AND UPPER(e.prijs) < :secondarg").getResultList();
     }
 
     public List<Advertentie> uitgebreidZoekenProduct(String zoektermTitel, double maxPrijs){

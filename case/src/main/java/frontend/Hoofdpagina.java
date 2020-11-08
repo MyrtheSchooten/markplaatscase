@@ -1,10 +1,7 @@
 package frontend;
 
 import dao.AdvertentieDao;
-import dao.Dao;
-import domain.Advertentie;
 import domain.Gebruiker;
-import frontend.PlaatsenAdvertentie;
 
 import java.util.Scanner;
 
@@ -36,7 +33,7 @@ public class Hoofdpagina {
                         new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(adDao, gebruiker);
                         break;
                     case "3":
-                        new EigenArtikelenRaadplegen().eigenArtikelenRaadplegen(adDao, gebruiker);
+                        new EigenAdvertentiesRaadplegen().eigenAdvertentiesRaadplegen(adDao, gebruiker);
                         break;
                     case "4":
                         break;

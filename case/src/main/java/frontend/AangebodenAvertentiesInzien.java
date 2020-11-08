@@ -95,7 +95,7 @@ public class AangebodenAvertentiesInzien {
     }
 
     private void simpelZoeken(AdvertentieDao adDao, String zoekterm) {
-        List<Advertentie> result = adDao.findBy(zoekterm);
+        List<Advertentie> result = adDao.findByNaam(zoekterm);
         if (result.size() != 0) {
             result.forEach(e -> System.out.println("\t" + e.toString()));
         } else {

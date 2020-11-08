@@ -1,5 +1,8 @@
 package domain;
 
+import com.ibm.jvm.dtfjview.tools.utils.FileUtils;
+
+import javax.imageio.ImageIO;
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -20,7 +23,6 @@ public class Advertentie extends AbstractEntityID<Long>{
 
     @ManyToOne(fetch = EAGER)
     private Gebruiker gebruiker;
-
 
     @Enumerated(value = EnumType.STRING)
     private StatusAdvertentie statusAdvertentie;
@@ -79,6 +81,8 @@ public class Advertentie extends AbstractEntityID<Long>{
         this.afbeelding = afbeelding;
     }
 
+    public void setPrijs(double prijs) {this.prijs = prijs;}
+
     public void setStatusAdvertentie(StatusAdvertentie statusAdvertentie) {
         this.statusAdvertentie = statusAdvertentie;
     }
@@ -91,7 +95,6 @@ public class Advertentie extends AbstractEntityID<Long>{
                 "\t\t" + "Prijs = " + prijs + "\n" +
                 "\t\t" + "Verkoper = " + gebruiker.getGebruikersnaam() + "\n" +
                 "\t\t" + "DatumGeplaatst = " + datumGeplaatst + "\n" +
-                "\t\t" + "Omschrijving = '" + omschrijving + '\'' + "\n" +
-                "\t\t" + "Afbeelding = " + Arrays.toString(afbeelding);
+                "\t\t" + "Omschrijving = '" + omschrijving + '\'';
     }
 }

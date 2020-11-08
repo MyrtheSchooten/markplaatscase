@@ -78,17 +78,7 @@ public class PlaatsenAdvertentie {
         }
     }
 
-   /* private void afbeeldingToevoegen() {
-        try {
-            System.out.println("Voeg een afbeelding toe:");
-            System.out.println("Hard gecodeerd: C:\\Afbeeldingen\\markplaatscase");
 
-            Path path = Paths.get("C:\\Afbeeldingen\\markplaatscase\\advertentieafbeelding.jpg");
-            byte[] afbeelding = Files.readAllBytes(path);
-        } catch (IOException e) {
-            System.out.println("Geen afbeelding gevonden.");
-        }
-    }*/
 
 
 }
