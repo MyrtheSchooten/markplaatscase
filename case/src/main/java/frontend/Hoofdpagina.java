@@ -2,40 +2,39 @@ package frontend;
 
 import dao.AdvertentieDao;
 import domain.Gebruiker;
+import util.ScannerWrapper;
 
 import java.util.Scanner;
 
 public class Hoofdpagina {
-    public Scanner scanner = new Scanner(System.in);
+    public ScannerWrapper scanner = new ScannerWrapper();
 
-    public void Start(AdvertentieDao adDao, Gebruiker gebruiker) {
+    public void start(Gebruiker gebruiker) {
 
         while (true) {
+            System.out.println("********* " + getClass().getSimpleName() + " *********");
             System.out.println("----------------------------------------------");
             System.out.println("Welkom op de marktplaats!");
             System.out.println("Wat wilt u doen?");
             System.out.println("----------------------------------------------");
 
             System.out.println("(1) [Een advertentie plaatsen.]");
-            System.out.println("(2) [Aangeboden artikelen zoeken.]");
+            System.out.println("(2) [Aangeboden artikelen bekijken.]");
             System.out.println("(3) [Eigen artikelen raadplegen.]");
-            System.out.println("(4) [Naar mijn winkelmandje]");
-            System.out.println("(X) [Afsluiten]");
+            System.out.println("(X) [Afmelden]");
 
-            String answer = scanner.nextLine().toUpperCase();
+            String answer = scanner.read().toUpperCase();
 
             try {
                 switch (answer) {
                     case "1":
-                        new PlaatsenAdvertentie().plaatsenAdvertentie(adDao, gebruiker);
+                        new PlaatsenAdvertentie().plaatsenAdvertentie(gebruiker);
                         break;
                     case "2":
-                        new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(adDao, gebruiker);
+                        new AangebodenAvertentiesInzien().aangebodenAdvertentiesInzien(gebruiker);
                         break;
                     case "3":
-                        new EigenAdvertentiesRaadplegen().eigenAdvertentiesRaadplegen(adDao, gebruiker);
-                        break;
-                    case "4":
+                        new EigenAdvertentiesRaadplegen().eigenAdvertentiesRaadplegen(gebruiker);
                         break;
                     case "X":
                         return;

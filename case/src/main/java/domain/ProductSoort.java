@@ -12,8 +12,6 @@ public class ProductSoort extends Soort{
     @OneToMany(mappedBy = "isProductSoort", fetch = FetchType.EAGER)
     private List<ProductAdvertentie> productenVanSoort = new ArrayList<>();
 
-    private String naamSoort;
-
     public ProductSoort(){
 
     }

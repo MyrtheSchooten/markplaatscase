@@ -10,7 +10,6 @@ public class ProductAdvertentie extends Advertentie{
     @OneToMany(mappedBy = "productAdvertentie", fetch = FetchType.EAGER)
     private List<BezorgwijzeArtikel> bezorgwijzenVoorAdvertentie = new ArrayList<>();
 
-
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private ProductSoort isProductSoort;
 

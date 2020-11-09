@@ -15,28 +15,10 @@ public abstract class Dao<T> {
         return entityManager.find(T(), id);
     }
 
-    public T getDetached(long id) {
-        T t = entityManager.find(T(), id);
-        entityManager.detach(t);
-        return t;
-    }
-
     public void save(T e){
         entityManager.getTransaction().begin();
         entityManager.persist(e);
         entityManager.getTransaction().commit();
-    }
-
-    public void saveAndDetach(T e) {
-        entityManager.getTransaction().begin();
-        entityManager.persist(e);
-        detach();
-        entityManager.getTransaction().commit();
-    }
-
-    private void detach() {
-        entityManager.flush();
-        entityManager.clear();
     }
 
     public T update(T e) {

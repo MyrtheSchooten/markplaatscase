@@ -1,27 +1,18 @@
 package domain;
 
-import com.ibm.jvm.dtfjview.tools.utils.FileUtils;
-
-import javax.imageio.ImageIO;
 import javax.persistence.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
-import static javax.persistence.FetchType.*;
-import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.TemporalType.DATE;
 
 @Entity
-public class Advertentie extends AbstractEntityID<Long>{
+public class Advertentie extends AbstractEntityID<Long> {
 
     private String titel;
     private double prijs;
 
-    @ManyToOne(fetch = EAGER)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Gebruiker gebruiker;
 
     @Enumerated(value = EnumType.STRING)
@@ -46,7 +37,6 @@ public class Advertentie extends AbstractEntityID<Long>{
         this.prijs = prijs;
         this.omschrijving = omschrijving;
         this.statusAdvertentie = StatusAdvertentie.TEKOOP;
-        this.datumGeplaatst = datumGeplaatst;
     }
 
     public String getTitel() {
@@ -81,10 +71,16 @@ public class Advertentie extends AbstractEntityID<Long>{
         this.afbeelding = afbeelding;
     }
 
-    public void setPrijs(double prijs) {this.prijs = prijs;}
+    public void setPrijs(double prijs) {
+        this.prijs = prijs;
+    }
 
     public void setStatusAdvertentie(StatusAdvertentie statusAdvertentie) {
         this.statusAdvertentie = statusAdvertentie;
+    }
+
+    public StatusAdvertentie getStatusAdvertentie() {
+        return statusAdvertentie;
     }
 
     @Override

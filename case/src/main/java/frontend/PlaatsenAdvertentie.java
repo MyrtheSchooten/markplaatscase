@@ -6,13 +6,16 @@ import domain.Advertentie;
 import domain.DienstAdvertentie;
 import domain.Gebruiker;
 import domain.ProductAdvertentie;
+import util.ScannerWrapper;
 
 import java.util.Scanner;
 
-public class PlaatsenAdvertentie {
-    public Scanner scanner = new Scanner(System.in);
+import static org.App.adDao;
 
-    public void plaatsenAdvertentie(Dao<Advertentie> adDao, Gebruiker gebruiker) {
+public class PlaatsenAdvertentie {
+    public ScannerWrapper scanner = new ScannerWrapper();
+
+    public void plaatsenAdvertentie(Gebruiker gebruiker) {
 
         while (true) {
 
@@ -24,17 +27,17 @@ public class PlaatsenAdvertentie {
 
             System.out.println("(D) [Dienst]");
             System.out.println("(P) [Product]");
-            System.out.println("(X) [Terug naar hoofdmenu.]");
+            System.out.println("(X) [Terug naar hoofdpagina.]");
 
-            String antwoord = scanner.nextLine().toUpperCase();
+            String antwoord = scanner.read().toUpperCase();
 
             try {
                 switch (antwoord) {
                     case "D":
-                        maakAdvertentie(adDao, gebruiker, true);
+                        maakAdvertentie(gebruiker, true);
                         break;
                     case "P":
-                        maakAdvertentie(adDao, gebruiker, false);
+                        maakAdvertentie(gebruiker, false);
                         break;
                     case "X":
                         return;
@@ -48,14 +51,14 @@ public class PlaatsenAdvertentie {
         }
     }
 
-    public void maakAdvertentie(Dao<Advertentie> adDao, Gebruiker gebruiker, boolean isDienst) {
+    public void maakAdvertentie(Gebruiker gebruiker, boolean isDienst) {
         try {
             System.out.println("Titel advertentie:");
-            String titel = scanner.nextLine();
+            String titel = scanner.read();
             System.out.println("Prijs advertentie:");
-            double prijs = Double.parseDouble(scanner.nextLine());
+            double prijs = Double.parseDouble(scanner.read());
             System.out.println("Omschrijving (indien n.v.t. niets invullen):");
-            String omschrijving = scanner.nextLine();
+            String omschrijving = scanner.read();
 
             Advertentie advertentie = isDienst ?
                     new DienstAdvertentie(titel, prijs, omschrijving) :
@@ -67,11 +70,11 @@ public class PlaatsenAdvertentie {
 
             System.out.println("----------------------------------------------");
             System.out.println("Uw advertentie is opgeslagen.");
-            System.out.println("U kunt nu via \"mijn advertenties\" een afbeelding toevoegen, aangeven welke soort product/dienst u heeft aangeboden en evt bezorgwijzen kiezen.");
+            System.out.println("U kunt nu via \"Advertentie wijzigen\" in het hoofdmenu een afbeelding toevoegen en de advertentie aanpassen.");
             System.out.println("Druk een toets in om verder te gaan");
             System.out.println("----------------------------------------------");
 
-            String verderGaan = scanner.nextLine();
+            String verderGaan = scanner.read();
 
         } catch (NumberFormatException e) {
             System.out.println("Voer een numerieke waarde in voor de prijs. Probeer het nog een keer.");

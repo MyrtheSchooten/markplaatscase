@@ -13,14 +13,15 @@ public class Gebruiker extends  AbstractEntityID<Long> {
     @Enumerated(value = EnumType.STRING)
     private AccountStatus accountStatus;
 
-    @OneToMany(mappedBy = "gebruiker")
+    @OneToMany(mappedBy = "gebruiker", fetch = FetchType.EAGER)
     private List<Advertentie> advertenties;
 
-    @ManyToMany
+
     @JoinTable(
             name = "gebruiker_bezorgwijzen",
             joinColumns = @JoinColumn(name = "gebruiker_id"),
             inverseJoinColumns = @JoinColumn(name = "bezorgwijze_id"))
+    @ManyToMany(cascade = CascadeType.PERSIST)
     private List<BezorgwijzeGebruiker> gekozenBezorgwijzen = new ArrayList<>();
 
 

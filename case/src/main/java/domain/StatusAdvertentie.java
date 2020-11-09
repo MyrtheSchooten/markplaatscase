@@ -1,5 +1,5 @@
 package domain;
 
 public enum StatusAdvertentie {
-    TEKOOP, VERKOCHT, TEOUD
+    TEKOOP, VERKOCHT, TEOUD, TERUGGETROKKEN
 }

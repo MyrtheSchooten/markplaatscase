@@ -1,15 +1,22 @@
 package org;
 
-import dao.*;
+import dao.AdvertentieDao;
+import dao.BezorgwijzeDao;
+import dao.GebruikerDao;
+import dao.SoortDao;
 import domain.*;
 import frontend.Hoofdpagina;
+import frontend.Inlog;
 import frontend.PlaatsenAdvertentie;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import util.ScannerWrapper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-@lombok.extern.slf4j.Slf4j
 public class App {
+    Logger log = LoggerFactory.getLogger(App.class);
 
     public static final EntityManager entityManager = Persistence.createEntityManagerFactory("MySQL-marktplaatscase").createEntityManager();
     public static final GebruikerDao gebDao = new GebruikerDao(entityManager);
@@ -38,7 +45,6 @@ public class App {
         soortDao.save(fietsenMaker);
         soortDao.save(schilder);
 
-
         Gebruiker gebruiker1 = new Gebruiker("Gebruiker1", "W8Woord");
         gebruiker1.addGebruikerBezorgwijzen(afhalenMagazijn);
         gebruiker1.addGebruikerBezorgwijzen(thuisAfhalen);
@@ -53,7 +59,8 @@ public class App {
         gebruiker3.addGebruikerBezorgwijzen(versturenRembours);
         gebDao.save(gebruiker3);
 
-        new Hoofdpagina().Start(adDao, gebruiker2);
+        new Inlog().inlog();
+        System.out.println("Bedankt voor het bezoeken van de Marktplaats!");
     }
 
 

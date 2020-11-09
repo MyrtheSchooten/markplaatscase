@@ -4,6 +4,7 @@ import dao.AdvertentieDao;
 import domain.Advertentie;
 import domain.DienstAdvertentie;
 import domain.ProductAdvertentie;
+import util.ScannerWrapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,17 +12,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-public class AdvertentieWijzigen {
-    public Scanner scanner = new Scanner(System.in);
+import static org.App.adDao;
 
-    public void advertentieWijzigen(AdvertentieDao adDao) {
+public class AdvertentieWijzigen {
+    public ScannerWrapper scanner = new ScannerWrapper();
+
+    public void advertentieWijzigen() {
+        System.out.println("********* " + getClass().getSimpleName() + " *********");
         System.out.println("----------------------------------------------");
         System.out.println("Hier kunt u uw advertentie wijzigen.");
         System.out.println("Welke advertentie wilt u aanpassen? Voer de productcode in.");
         System.out.println("----------------------------------------------");
 
         try {
-            String productcode = scanner.nextLine();
+            String productcode = scanner.read();
             Advertentie teWijzigenAd = adDao.get(Long.parseLong(productcode));
 
             System.out.println("----------------------------------------------");
@@ -32,25 +36,19 @@ public class AdvertentieWijzigen {
             System.out.println("(2) [Omschrijving wijzigen]");
             System.out.println("(3) [Prijs aanpassen]");
             System.out.println("(4) [Kattenplaatje toevoegen/verwijderen]");
-            System.out.println("(5) [Soort aanpassen]");
-            System.out.println("(6) [Bezorgwijze kiezen]");
-            System.out.println("(X) [Terug naar hoofdmenu.]");
+            System.out.println("(X) [Terug]");
 
-            String antwoord = scanner.nextLine();
+            String antwoord = scanner.read();
 
             switch (antwoord){
                 case "1":
-                    wijzigTitel(adDao, teWijzigenAd); break;
+                    wijzigTitel(teWijzigenAd); break;
                 case "2":
-                    wijzigOmschrijving(adDao, teWijzigenAd); break;
+                    wijzigOmschrijving(teWijzigenAd); break;
                 case "3":
-                    wijzigPrijs(adDao,teWijzigenAd); break;
+                    wijzigPrijs(teWijzigenAd); break;
                 case "4":
-                    afbeeldingAanpassen(adDao, teWijzigenAd); break;
-                case "5":
-                    soortAanpassen(adDao, teWijzigenAd); break;
-                case "6":
-                    bezorgwijzeKiezen(adDao, teWijzigenAd); break;
+                    afbeeldingAanpassen(teWijzigenAd); break;
                 case "X":
                     return;
                 default:
@@ -64,26 +62,26 @@ public class AdvertentieWijzigen {
         }
     }
 
-    private void wijzigTitel(AdvertentieDao adDao, Advertentie teWijzigenAd) {
+    private void wijzigTitel(Advertentie teWijzigenAd) {
         System.out.println("Voer de nieuwe titel in.");
-        String nieuweTitel = scanner.nextLine();
+        String nieuweTitel = scanner.read();
         teWijzigenAd.setTitel(nieuweTitel);
         adDao.update(teWijzigenAd);
         System.out.println("De titel is gewijzigd naar: " + teWijzigenAd.getTitel() + ".");
     }
 
-    private void wijzigOmschrijving(AdvertentieDao adDao, Advertentie teWijzigenAd) {
+    private void wijzigOmschrijving(Advertentie teWijzigenAd) {
         System.out.println("Voer de nieuwe omschrijving in.");
-        String nieuweOmschrijving = scanner.nextLine();
+        String nieuweOmschrijving = scanner.read();
         teWijzigenAd.setOmschrijving(nieuweOmschrijving);
         adDao.update(teWijzigenAd);
         System.out.println("De omschrijving is gewijzigd naar: " + teWijzigenAd.getOmschrijving() + ".");
     }
 
-    private void wijzigPrijs(AdvertentieDao adDao, Advertentie teWijzigenAd) {
+    private void wijzigPrijs(Advertentie teWijzigenAd) {
         try{
             System.out.println("Voer de nieuwe prijs in.");
-            double nieuwePrijs = Double.parseDouble(scanner.nextLine());
+            double nieuwePrijs = Double.parseDouble(scanner.read());
             teWijzigenAd.setPrijs(nieuwePrijs);
             adDao.update(teWijzigenAd);
         } catch (NumberFormatException e) {
@@ -91,7 +89,7 @@ public class AdvertentieWijzigen {
         }
     }
 
-    private void afbeeldingAanpassen(AdvertentieDao adDao, Advertentie teWijzigenAd) {
+    private void afbeeldingAanpassen(Advertentie teWijzigenAd) {
         try {
             if (teWijzigenAd.getAfbeelding() != null){
                 teWijzigenAd.setAfbeelding(null);
@@ -106,13 +104,6 @@ public class AdvertentieWijzigen {
             System.out.println("Geen afbeelding gevonden.");
         }
        adDao.update(teWijzigenAd);
-    }
-
-    private void soortAanpassen(AdvertentieDao adDao, Advertentie teWijzigenAd) {
-
-    }
-
-    private void bezorgwijzeKiezen(AdvertentieDao adDao, Advertentie teWijzigenAd) {
     }
 
 }
